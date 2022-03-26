@@ -1,0 +1,14 @@
+#pragma once
+
+
+#define MOTOR_LEFT_STEP 0
+#define MOTOR_RIGHT_STEP 1
+#define MOTOR_LEFT_EN 2
+#define MOTOR_RIGHT_EN 3
+#define MOTOR_LEFT_DIR 4
+#define MOTOR_RIGHT_DIR 5
+
+
+
+#define ROTATION_SPEED_HIGH {20,16,12,8,2,0}
+#define ROTATION_SPEED_LOW {10,8,6,4,1,0}

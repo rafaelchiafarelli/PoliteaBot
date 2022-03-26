@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../workspace/DMXtoUSB"
+		},
+		{
+			"name": "DMX",
+			"path": "../../DMX"
+		},
+		{
+			"name": "Visitor",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

@@ -2,8 +2,17 @@
 #include "SpeedType.hpp"
 #include "string.h"
 #define PROTOCOL "{cmd:%d,hb:%llu}"
-//example: {cmd:05,hb:0000000000000000000000000000001};
-#define PROTOCOL_SIZE 44
+//example: {cmd:05,y:00,t:00,hb:00000001};
+#define PROTOCOL_SIZE 31
+
+typedef struct {
+    /* data */
+    speed sp;
+    int tilt;
+    int yaw;
+    unsigned long int time;
+}CommandInfo;
+
 
 class SerialProtocol{
 
@@ -20,7 +29,7 @@ class SerialProtocol{
         int debug;
         char command[10];
         char buffer[PROTOCOL_SIZE+1];
-        speed CheckData();
+        speed CheckData(CommandInfo &);
         SerialProtocol()
         {
             memset(data,0,PROTOCOL_SIZE+1);

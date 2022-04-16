@@ -75,7 +75,7 @@ ISR(TIMER0_COMPA_vect){  //change the 0 to 1 for timer1 and 2 for timer2
 }
 
 int t2count = 0;
-
+CommandInfo cmd;
 ISR(TIMER1_COMPA_vect){  //change the 0 to 1 for timer1 and 2 for timer2
   t2count++;
   //check for data available
@@ -86,7 +86,7 @@ ISR(TIMER1_COMPA_vect){  //change the 0 to 1 for timer1 and 2 for timer2
   {
     Serial.readBytes(pt.buffer,PROTOCOL_SIZE);
     Serial.println("data");
-    speed sp = pt.CheckData();
+    speed sp = pt.CheckData(cmd);
     t2count = 0;
     st.SetSpeed(sp);
   }

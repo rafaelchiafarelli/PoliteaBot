@@ -2,7 +2,7 @@
 #include "string.h"
 #include "stdlib.h"
 
-speed SerialProtocol::CheckData()
+speed SerialProtocol::CheckData(CommandInfo &cmd)
 {
     speed ret = noMovement;
     if(TransferBuffer())
@@ -14,7 +14,25 @@ speed SerialProtocol::CheckData()
 
         memset(command,0,10);
         strncpy(command,begin+5,2);
+
+        char data[9];
+        memset(data,0,9);
+        strncpy(data,strstr(data,",t:"),2);
+
+        cmd.tilt = atoi(data);
         
+        memset(data,0,9);
+        strncpy(data,strstr(data,",y:"),2);
+
+        cmd.yaw = atoi(data);
+
+        memset(data,0,9);
+        strncpy(data,strstr(data,",hb:"),2);
+
+        cmd.time = atoi(data);
+        
+        
+
         ret = (speed)atoi(command);
         
     }

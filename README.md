@@ -1,70 +1,62 @@
-# Virtual Joystic + Flask webserver 
+# Virtual Joystic + Flask webserver + Video Streammer + Arduino PlatformIO 
 
-## Steps to install
+## Intro
+This section deals with the robot itself. As discussed earlier, this robot is a sum of 4 main parts, and this is the Software part that is meant to control and allow access to all other parts.
 
-Step 1: Install virtual Environment 
------------------------------------
+General Requirements:
+---------------------
+* Internet connection
+* stable power supply
+* 
+## Deploy
+Clone and compile this repo into a linux machine.
+---------------------------------------------
 
-Debian/Ubuntu 
-```
-$ sudo apt-get install python-pip python-dev build-essential 
-$ sudo pip install --upgrade pip 
-$ sudo pip install --upgrade virtualenv 
-```
+git clone git@github.com:rafaelchiafarelli/PoliteaBot.git
+cd PoliteaBot
+./deploy.sh
 
-CentOs
-```
-$ yum install epel-release 
-$ yum install python-pip python-devel
-$ sudo pip install --upgrade pip 
-$ sudo pip install --upgrade virtualenv 
-```
+The script will require "sudo".
 
-Step 2: Create Virtual Environment 
+## Development
+Create the Development Environment
 ----------------------------------
-```
-$ mkdir ~/virtualenvironment
-$ virtualenv ~/virtualenvironment/joystick
-```
+*Requires:*
+* Ubuntu 20 or newer 
+* VSCode installed
+* PlatformIO plugging for VSCode Installed.
+* Python3.8 installed
+* WebCam installed
+* IP Camera installed
+* Arduino Mega 2650 available
 
-Step 3 : Clone the repo   
------------------------
-```
-$ cd ~
-$ git clone https://github.com/dramasamy/virtualJoystick.git
-```
+*Step 1:*
+git clone git@github.com:rafaelchiafarelli/PoliteaBot.git
+cd Politeabot
 
-Step 4 : Install dependencies  
------------------------------
-```
-$ cd ~/virtualJoystick
-$ source ~/virtualenvironment/joystick/bin/activate
-(joystick)dramasamy@hostname$ pip install  -r requirements.txt
-```
+*Step 2:* 
+./configure.sh
+The script will require "sudo"
 
-Step 5 : Start the application 
------------------------------
-```
-(joystick)dramasamy@hostname$ python app.py
-```
+*Step 3:*
+Start the virtual environment
+source venv/bin/activate
 
+*Step 4:*
+Compile LowLovel
+Go to VSCode and compile arduino project
 
-Step 6 : Admin Webpage (Chrome/Firefox/Safari)
------------------------------
-```
-http://127.0.0.1:5000/admin
-```
+Future works
+------------
+* Opening Statements
+This development is raw and still on-going, so far little has been done to help peopple to contribute. No debug tool is provided and no validation or testing tool was created. Documentation is bad (to say the least) and architecture was develop to serve an awkard purpose (movie).
+* future works
+- virtual tools to allow others to contribute.
+- document with text and pictures the architecture
+- create a testing suit to allow users to ensure there development is working
+* Closing thougts
+The application and device are really cool, a testimony to today state of development. Features that ware really strange to figure out ware the ones with the most simplicity to develop, as example, the overlay of battery signal. Although it is very simple to implement, it did took some time to understand that the batery did not need to "realy die". On that regar, the implementation of speed and direction control was really difficult. And that's because there is no formula for the approuch. Controlling the device is really strange, but intuitive at the same time. weird.
 
-Step 7 : Joystick (Chrome/Firefox/Safari)
------------------------------
-```
-http://127.0.0.1:5000
-```
-
-License
--------
-
-Apache License Version 2.0
 
 Courtesy
 --------

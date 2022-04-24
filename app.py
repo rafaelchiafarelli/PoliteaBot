@@ -30,7 +30,7 @@ thread_stop_event = Event()
 s_thread = Thread()
 serial_stop_event = Event()
 
-ser = serial.Serial('/dev/ttyUSB0', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 38400)
 count = 0
 
 class RandomThread(Thread):
@@ -97,24 +97,38 @@ def received_msg(data):
     if(x<0):
         forward = 1
         x = x*(-1)
-    if x>100:
-        x=100
+    if x>99:
+        x=99
 
     y = int(data['y'])
     left = 0
     if(y<0):
         left = 1
         y = y*(-1)
-    if y>100:
-        y=100
+    if y>99:
+        y=99
     speed_x = limits[x]
     speed_y = limits[y]
     command = 0
     if (speed_y,speed_x,left,forward) in steering:
         if steering[(speed_y,speed_x,left,forward)] in movement:
             command = movement[steering[(speed_y,speed_x,left,forward)]]
-    count+=1        
-    ser.write(("{cmd:" + str(command).zfill(2) +",hb:"+ str(count).zfill(31) + "};").encode("utf-8"))
+    count+=1    
+    if count > 99999999:
+        count = 0    
+    if forward == 1:
+        x  = -1 * x
+    if left == 1:
+        y = -1 * y
+
+    mystring = ("{cmd:"+ f'{command:02d}' + 
+                ",t:" + f'{x:+03d}' +
+                ",y:" + f'{y:+03d}' +
+                ",hb:" + f'{count:08d}' + 
+                "};").encode("utf-8")
+    print(mystring)
+    ser.write(mystring)
+
     ser.flush()
 
 

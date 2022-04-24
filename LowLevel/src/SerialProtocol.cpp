@@ -9,36 +9,56 @@ speed SerialProtocol::CheckData(CommandInfo &cmd)
     {
         //data has the information required
         
-        char *begin = strstr(data,"{cmd:");
+        char *begin = strstr(data,"{cmd:")+5;
         char *end = strstr(data,",");
 
         memset(command,0,10);
-        strncpy(command,begin+5,2);
+        if( !end || !begin)
+        {
+            return anothererror;
+        }
+        strncpy(command,begin,end - begin);
+
+        ret = (speed)atoi(command);
+
+        if (ret > transferBufferError)
+        {
+            return transferBufferError;
+        }
 
         char data[9];
         memset(data,0,9);
-        strncpy(data,strstr(data,",t:"),2);
+        end = strstr(end,",");
+        char *tilt = strstr(data,",t:")+3;
+        if(tilt)
+        {
+            strncpy(data,tilt,end-tilt);
+            cmd.tilt = atoi(data);
+        }
 
-        cmd.tilt = atoi(data);
-        
         memset(data,0,9);
-        strncpy(data,strstr(data,",y:"),2);
-
-        cmd.yaw = atoi(data);
+        char *yaw = strstr(data,",y:")+3;
+        end = strstr(end,",");        
+        if(yaw)
+        {
+            strncpy(data,yaw,end-yaw);
+            cmd.yaw = atoi(data);
+        }
 
         memset(data,0,9);
-        strncpy(data,strstr(data,",hb:"),2);
+        char *h_b = strstr(data,",hb:")+4;
+        end = strstr(end,"}");        
+        if(h_b)
+        {
+            strncpy(data,h_b,end-h_b);
+            cmd.time = atoi(data);
+        }
 
-        cmd.time = atoi(data);
-        
-        
 
-        ret = (speed)atoi(command);
-        
     }
     else
     {
-        ret = transferBufferError;
+        ret = anothererror2;
     }
     return ret;
 }
@@ -47,40 +67,10 @@ bool SerialProtocol::TransferBuffer()
 {
     char *begin = strstr(buffer,"{cmd:");
     char *end = strstr(buffer,"};");
-    debug = 0x40;
     if((begin && end) && (begin < end))
     {
-        //best case scenario
-        debug = 0x80;
-        
         strncpy(data,buffer,PROTOCOL_SIZE);
         return true;
-
-    }else if(end>begin)
-    {
-        //regular case scenario
-        if(msg==0)
-        {
-            char *last = strncpy(begin,data,PROTOCOL_SIZE - (begin-buffer) );
-            cur_pos = last-begin; //update the position counter
-            msg = 1;
-            return false;
-        }else if(msg == 1)
-        {
-            char *last = strncpy(buffer,data+cur_pos,buffer-end);
-            cur_pos = last-begin; //update the position counter
-            strncpy(end,sec_buffer,PROTOCOL_SIZE-(cur_pos));
-            msg = 2;
-            return true;  
-        }else if(msg >=2)
-        {
-            char *last = strncpy(sec_buffer,data,PROTOCOL_SIZE);
-            cur_pos = last - data;
-            strncpy(buffer,data+cur_pos,PROTOCOL_SIZE - cur_pos);
-            strncpy(end,sec_buffer,PROTOCOL_SIZE);
-            return true;
-        }
     }
-
     return false;
 }

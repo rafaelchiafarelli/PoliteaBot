@@ -90,8 +90,8 @@
 			var joy = new JoyStick('joyDiv');
 			var x = document.getElementById("X");
 			var y = document.getElementById("Y");
-			setInterval(function(){ x.value=joy.GetX(); }, 50);
-			setInterval(function(){ y.value=joy.GetY(); }, 50);
+			setInterval(function(){ x.value=joy.GetX(); }, 100);
+			setInterval(function(){ y.value=joy.GetY(); }, 100);
 			
 			$(document).ready(function(){
 				//connect to the socket server.
@@ -120,7 +120,7 @@
 					var logging = y.value;
 					console.log(logging);				
 					socket.emit('message',{'x':x.value,'y':y.value});
-				},150);
+				},250);
 			});
 			window.addEventListener("beforeunload", function (event) {
 				  event.preventDefault();

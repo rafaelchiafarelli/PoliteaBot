@@ -52,7 +52,10 @@ typedef enum{
     bkUltraFast,
 
  
-    transferBufferError
+    transferBufferError,
+    anothererror,
+    anothererror1,
+    anothererror2
 
 
 }speed;

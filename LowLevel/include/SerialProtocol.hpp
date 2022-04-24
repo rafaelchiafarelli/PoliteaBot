@@ -3,7 +3,7 @@
 #include "string.h"
 #define PROTOCOL "{cmd:%d,hb:%llu}"
 //example: {cmd:05,y:00,t:00,hb:00000001};
-#define PROTOCOL_SIZE 31
+#define PROTOCOL_SIZE 33
 
 typedef struct {
     /* data */

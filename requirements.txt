@@ -4,6 +4,7 @@ cached-property==1.5.2
 certifi==2021.10.8
 charset-normalizer==2.0.12
 click==6.7
+colorama==0.4.4
 Django==1.11.13
 Flask==1.0.2
 Flask-SocketIO==3.0.0
@@ -12,9 +13,9 @@ image==1.5.24
 isodate==0.6.1
 itsdangerous==0.24
 Jinja2==2.10
-lxml==4.8.0
-MarkupSafe==1.0
-numpy==1.22.3
+lxml==4.6.0
+MarkupSafe==1.1.0
+numpy==1.21.4
 onvif-zeep==0.2.12
 opencv-python==4.5.5.64
 Pillow==9.0.1
@@ -23,6 +24,7 @@ pyserial==3.5
 python-engineio==2.1.1
 python-socketio==1.9.0
 pytz==2018.4
+pywin32==304
 qrcode==6.0
 requests==2.27.1
 requests-file==1.5.1
@@ -31,6 +33,7 @@ sensecam-control==0.1.0
 six==1.11.0
 soupsieve==2.3.2.post1
 style==1.1.0
+tk==0.1.0
 update==0.0.1
 urllib3==1.26.9
 Werkzeug==0.14.1

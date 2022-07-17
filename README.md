@@ -1,4 +1,4 @@
-# Virtual Joystic + Flask webserver + Video Streammer + Arduino PlatformIO 
+# Flask webserver + Video Streammer + Arduino PlatformIO 
 
 ## Intro
 This section deals with the robot itself. As discussed earlier, this robot is a sum of 4 main parts, and this is the Software part that is meant to control and allow access to all other parts.
@@ -22,7 +22,7 @@ The script will require "sudo".
 Create the Development Environment
 ----------------------------------
 *Requires:*
-* Ubuntu 20 or newer 
+* Windows 10
 * VSCode installed
 * PlatformIO plugging for VSCode Installed.
 * Python3.8 installed

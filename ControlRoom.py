@@ -13,7 +13,7 @@ from threading import Thread, Event
 from random import randint
 import serial,json
 from model import limits, steering, movement
-from socket import socket, AF_INET, SOCK_DGRAM
+import socket
 __author__ = 'Eremita'
 
 app = Flask(__name__)
@@ -31,7 +31,11 @@ thread_stop_event = Event()
 s_thread = Thread()
 serial_stop_event = Event()
 
+ser = serial.Serial('/dev/ttyUSB0', 250000)
 count = 0
+
+
+
 
 class RandomThread(Thread):
     def __init__(self):
@@ -88,16 +92,59 @@ def stop_connections():
     serial_stop_event.set()
     thread_stop_event.set()
 
+
+
+
 @socketio.on('message', namespace='/test')
 def received_msg(data):
-    SERVER_IP   = "127.0.0.1"
-    PORT_NUMBER = 4000
-    SIZE = 1024
-    mySocket = socket( AF_INET, SOCK_DGRAM )
-    data_str = bytes(str(data).encode("utf-8"))
-    mySocket.sendto(data_str,(SERVER_IP,PORT_NUMBER))
+
+    global count
+    x = int(data['x'])
+    forward = 0
+    if(x<0):
+        forward = 1
+        x = x*(-1)
+    if x>99:
+        x=99
+
+    y = int(data['y'])
+    left = 0
+    if(y<0):
+        left = 1
+        y = y*(-1)
+    if y>99:
+        y=99
+    speed_x = limits[x]
+    speed_y = limits[y]
+    command = 0
+    if (speed_y,speed_x,left,forward) in steering:
+        if steering[(speed_y,speed_x,left,forward)] in movement:
+            command = movement[steering[(speed_y,speed_x,left,forward)]]
+    count+=1    
+    if count > 99999999:
+        count = 0    
+    if forward == 1:
+        x  = -1 * x
+    if left == 1:
+        y = -1 * y
+
+    mystring = ("{cmd:"+ f'{command:02d}' + 
+                ",t:" + f'{x:+03d}' +
+                ",y:" + f'{y:+03d}' +
+                ",hb:" + f'{count:08d}' + 
+                "};").encode("utf-8")
+    print(mystring)
+    host = socket.gethostname()  # get local machine name
+    port = 8080  # Make sure it's within the > 1024 $$ <65535 range
+
+    soc = socket.socket()    
+    soc.connect((host, port))
+    soc.sendto(mystring)
+    
+
 
 
 
 if __name__ == '__main__':
+
     socketio.run(app, host='127.0.0.1', port=5000, log_output = False)

@@ -3,54 +3,38 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="Content-Type" content="text/html" charset="ISO-8859-1">
-		<title> LTE On the Moon: Command and Control </title>
+		<title> Sala de controles </title>
 		<!-- Style sheet for responsive design -->
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<style>
-			* {
-				box-sizing: border-box;
-			}
-			/* style classes for pictures */
-			.fill {object-fit: fill;}
-			.contain {object-fit: contain;}
-			.cover {object-fit: cover;}
-			.scale-down {object-fit: scale-down;}
-			.none {object-fit: none;}
-			
-			body {
-				margin: 0px;
-				padding: 0px;
-			}
-			#joystick {
-				border: 2px solid #9C9898;
-			}
-		</style>
+
 		<link rel="stylesheet" href="static/dev/css/jquery-ui.css">
 		<script src="static/dev/css/jquery-3.3.1.min.js"></script>
 		<script src="static/dev/css/jquery-ui.js"></script>
-		<script src="static/dev/js/joy.js"></script>
+
 		<script type="text/javascript" src="static/cdnjs/socket.io.min.js"></script>
 		
 		<script>
-		$( function() {
-			$( "#power-slider" ).slider({
-				orientation: "vertical",
-				range: "min",
-				min: 0,
-				max: 100,
-				value: 0,
-				slide: function( event, ui ) {
-					$( "#power" ).val( ui.value );
-				}
-			});
-			$( "#power" ).val( $( "#power-slider" ).slider( "value" ) );
-		} );
+
 		</script>
+    <style>
+
+		.column {
+		float: left;
+		width: auto;
+		margin: 5px;
+		}
+	
+		.row:after {
+		content: "";
+		display: table;
+		
+		}
+		</style>		
 	</head>
 	<body>
 		<div class="w3-container">
 			<div class="w3-container w3-center w3-teal">
-				<h2><strong>Controle do robo de presença virtual</strong></h2>
+				<h2><strong>Sala de controle</strong></h2>
 			</div>
 			<div class="w3-row">
 				<div class="w3-quarter">
@@ -71,36 +55,212 @@
 			</div>
 			<p id="entry"></p>
 		</div>
-		<div class="w3-container w3-row">
-			<div class="w3-third">
-				Stick X:   <input id="X" type="text" /></br>
-				Stick Y:   <input id="Y" type="text" />
+
+		<div class="row">
+			<div class="column">
+				<h2>LEDp's</h2>
+
+				<ul>
+					<li><label class="switch">
+						<input type="checkbox" id="L0">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L1">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L2">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L3">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L4">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L5">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L6">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L7">
+						<span class="slider_switch"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="L8">
+						<span class="slider_switch"></span>
+					</label></li>				
+					<li><label class="switch">
+						<input type="checkbox" id="L9">
+						<span class="slider_switch"></span>
+					</label></li>				
+					<li><label class="switch">
+						<input type="checkbox" id="L10">
+						<span class="slider_switch"></span>
+					</label></li>				
+					<li><label class="switch">
+						<input type="checkbox" id="L11">
+						<span class="slider_switch"></span>
+					</label></li>				
+				</ul>
 			</div>
-			<div class="w3-third" id="joyDiv" style="width:200px;height:200px;margin-bottom:20px;"></div>
-			<!-- we-rest keeps slider on right of joystick on small screens -->
-			<div class="w3-container w3-rest"> 
-				<p>
-				</p>
+			<div class="column">
+				<h2>Switches</h2>
+				<ul>
+					<li><label class="switch">
+						<input type="checkbox" id="K0">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K1">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K2">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K3">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K4">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K5">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K6">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K7">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K8">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K9">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K10">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="K11">
+						<span class="slider_switch round"></span>
+					</label></li>				
+
+				</ul>			
+			</div>
+			<div class="column">
+				<h2>Luzes</h2>
+				<ul>
+					<li><label class="switch">
+						<input type="checkbox" id="D0">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="D1">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="D2">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="D3">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="D4">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="D5">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="D6">
+						<span class="slider_switch round"></span>
+					</label></li>
+					<li><label class="switch">
+						<input type="checkbox" id="D7">
+						<span class="slider_switch round"></span>
+					</label></li>
+
+				</ul>
+			</div>
+				
+			<div class="column">
+				<h2>Mostradores</h2>
+				<ul>
+					<li><label class="slider">M0
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m0">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M1
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m1">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M2
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m2">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M3
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m3">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M4
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m4">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M5
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m5">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M6
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m6">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M7
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m7">
+						<span class="slider"></span>
+					</label></li>
+					<li><label class="slider">M8
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m8">
+						<span class="slider"></span>
+					</label></li>
+
+					<li><label class="slider">M9
+						<input type="range" min="0" max="15624" value="200" class="slider" id="m9">
+						<span class="slider"></span>
+					</label>	</li>			
+				</ul>
 			</div>
 		</div>
-			
+	
+
 		  <Script>
-		  
-			<!-- Create JoyStick object into the DIV 'joyDiv' -->
-			var joy = new JoyStick('joyDiv');
-			var x = document.getElementById("X");
-			var y = document.getElementById("Y");
-			setInterval(function(){ x.value=joy.GetX(); }, 100);
-			setInterval(function(){ y.value=joy.GetY(); }, 100);
-			
-			$(document).ready(function(){
-				//connect to the socket server.
-				var socket = io.connect('http://' + document.domain + ':' + location.port + '/test', {
+//connect to the socket server.
+var socket = io.connect('http://' + document.domain + ':' + location.port + '/test', {
 										'sync disconnect on unload': true,
 										'timeout':10,
 										'ping_interval':2 });
 				var numbers_received = [];
-				console.log(x.value);
+				
 				//receive details from server
 				socket.on('newnumber', function(msg) {
 					console.log("Received yiouiou number" + msg.number);
@@ -114,59 +274,185 @@
 						numbers_string = numbers_received[i].toString();
 					}
 					$('#log').html(numbers_string);
-				});
+				});						  		  
+			window.setInterval(function(){ 
+
+m0.value =document.getElementById("m0").value; 
+m1.value =document.getElementById("m1").value; 
+m2.value =document.getElementById("m2").value; 
+m3.value =document.getElementById("m3").value; 
+m4.value =document.getElementById("m4").value; 
+m5.value =document.getElementById("m5").value; 
+m6.value =document.getElementById("m6").value; 
+m7.value =document.getElementById("m7").value; 
+m8.value =document.getElementById("m8").value; 
+m9.value =document.getElementById("m9").value; 
+
+L0.value =document.getElementById("L0").checked; 
+L1.value =document.getElementById("L1").checked; 
+L2.value =document.getElementById("L2").checked; 
+L3.value =document.getElementById("L3").checked; 
+L4.value =document.getElementById("L4").checked; 
+L5.value =document.getElementById("L5").checked; 
+L6.value =document.getElementById("L6").checked; 
+L7.value =document.getElementById("L7").checked; 
+L8.value =document.getElementById("L8").checked; 
+L9.value =document.getElementById("L9").checked; 
+L10.value =document.getElementById("L10").checked; 
+L11.value =document.getElementById("L11").checked; 
+
+					
+
+K0.value =document.getElementById("K0").checked; 
+K1.value =document.getElementById("K1").checked; 
+K2.value =document.getElementById("K2").checked; 
+K3.value =document.getElementById("K3").checked; 
+K4.value =document.getElementById("K4").checked; 
+K5.value =document.getElementById("K5").checked; 
+K6.value =document.getElementById("K6").checked; 
+K7.value =document.getElementById("K7").checked; 
+K8.value =document.getElementById("K8").checked; 
+K9.value =document.getElementById("K9").checked; 
+K10.value =document.getElementById("K10").checked; 
+K11.value =document.getElementById("K11").checked; 					
+
+D0.value =document.getElementById("D0").checked; 
+D1.value =document.getElementById("D1").checked; 
+D2.value =document.getElementById("D2").checked; 
+D3.value =document.getElementById("D3").checked; 
+D4.value =document.getElementById("D4").checked; 
+D5.value =document.getElementById("D5").checked; 
+D6.value =document.getElementById("D6").checked; 
+D7.value =document.getElementById("D7").checked; 
+
+
+var logging = m0.value;
+console.log(logging);				
+
+socket.emit('message',{
+"motors":[m0.value,
+m1.value,
+m2.value,
+m3.value,
+m4.value,
+m5.value,
+m6.value,
+m7.value,
+m8.value,
+m9.value],
+"KEYS":[K0.value,
+K1.value,
+K2.value,
+K3.value,
+K4.value,
+K5.value,
+K6.value,
+K7.value,
+K8.value,
+K9.value,
+K10.value,
+K11.value],					
+"LED":[L0.value,
+L1.value,
+L2.value,
+L3.value,
+L4.value,
+L5.value,
+L6.value,
+L7.value,
+L8.value,
+L9.value,
+L10.value,
+L11.value],
+"DIGITAL":[D0.value,
+D1.value,
+D2.value,
+D3.value,
+D4.value,
+D5.value,
+D6.value,
+D7.value]
+});
+},50);
+			
+			$(document).ready(function(){
+
 				
-				setInterval(function(){ 
-					var logging = y.value;
-					console.log(logging);				
-					socket.emit('message',{'x':x.value,'y':y.value});
-				},250);
+				
+				
 			});
 			window.addEventListener("beforeunload", function (event) {
 				  event.preventDefault();
 				});
-			$(document).ready (function() {
-				$("#ctlButton").click(function () {
-					var entry = document.getElementById('entry');
-					var CtrlKey = document.getElementById('CtrlKey');
-					entry.innerHTML = 'You entered: ' + CtrlKey.value;
-				});
-			});
-			var sCounter = 0; /*-- Temp for testing button change routine */
-			function chgButton()
-			{
-				sCounter = sCounter + 1;
-				ButtonCtl(sCounter);
-				if (sCounter > 3) {
-					sCounter = 0;
-				}
-			}
-			function ButtonCtl(condition) {
-				var statusButton = document.getElementById("ctlButton");
-				switch(condition)
-				{
-					case 1:
-						/* Running - Button color=green, text=Running */
-						statusButton.style.backgroundColor = "green";
-						statusButton.innerHTML = "Running";
-						break;
-					case 2:
-						/* Time running out - Button color=yellow, text=Warning */
-						statusButton.style.color = "w3-yellow";
-						statusButton.innerHTML = "Warning";
-						break;
-					case 3:
-						/* Stop - Button color=red, text=stopped */
-						statusButton.style.color = "w3-red";
-						statusButton.innerHTML = "Stopped";
-						break;
-					default:
-						/* Idle - Button color=blue, text=begin */
-						statusButton.style.color = "w3-blue";
-						statusButton.innerHTML = "Begin";
-						break;
-				}
-			}
+
+
+			
 		</script>
+
+
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider_switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider_switch:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider_switch {
+  background-color: #2196F3;
+}
+
+input:focus + .slider_switch {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider_switch:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded slider_switchs */
+.slider_switch.round {
+  border-radius: 34px;
+}
+
+.slider_switch.round:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+
+
    </body>
 </html>

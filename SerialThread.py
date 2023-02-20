@@ -1,7 +1,7 @@
 import socket
 import serial, json
 import re
-
+import ast
 
 def checksum(string):
     csum = 0
@@ -10,7 +10,7 @@ def checksum(string):
     return str(csum)
 
 def Main():
-    ser = serial.Serial('/dev/ttyUSB0', 250000)
+    ser = serial.Serial('/dev/ttyUSB0', 250000,timeout=0.1)
 
     host = "127.0.0.1"
     print(host)
@@ -22,14 +22,23 @@ def Main():
     print("Server Started")
     while True:
         raw_data, addr = s.recvfrom(1024)
+        
         raw_data = raw_data.decode('utf-8')
-        p = re.compile('(?<!\\\\)\'')
+        p = re.compile('(?<!\\\\)\"')
         raw_data = p.sub('\"', raw_data)
+      
+        data = json.loads(raw_data[2:-1])
         
-        
-        data = json.loads(raw_data)
-
-
+        #"{
+        # "motors":
+        # ["6805","200","200","200","200","200","200","200","200","200"],
+        # "KEYS":
+        # ["false","false","false","false","false","false","false","false","false","false","false","false"],
+        # "LED":
+        # ["false","false","false","false","false","false","false","false","false","false","false","false"],
+        # "DIGITAL":
+        # ["false","false","false","false","false","false","false","false"]
+        # }"
         ##15000;1500;10000;400;1500;10000;400;1500;10000;400*07$
         to_send = "#"
         
@@ -40,24 +49,24 @@ def Main():
         i=0
         for k in data["LED"]:
             digital << 1
-            if k == 'true':
+            if k == 'false':
                 digital |= 1<<i
             i+=1
         for k in data["KEYS"]:
             digital << 1
-            if k == 'true':
+            if k == 'false':
                 digital |= 1<<i
             i+=1
     
         for k in data["DIGITAL"]:
-            if k == 'true':                
+            if k == 'false':                
                 digital |= 1<<i
             i+=1
         dig_low = digital
         dig_low = dig_low&(0x0000ffff)
         dig_high = digital
         dig_high = dig_high&(0xffff0000)
-        dig_high = dig_high>>16        
+        dig_high = dig_high>>16
 
         to_send += str(dig_low)+";"
         to_send += str(dig_high)
@@ -66,8 +75,10 @@ def Main():
         to_send += checksum(to_send) + "$"
         print("ToSend: " , to_send.encode("utf-8"))
         ser.write(to_send.encode("utf-8"))
-        var = ser.read(10)
         ser.flush()
+        var = ser.read(1024)
+        print(var)
+        
     c.close()
 
 if __name__=='__main__':

@@ -20,6 +20,9 @@ def Main():
     s.bind((host, port))
 
     print("Server Started")
+    first_msg = "#200;200;200;200;200;200;200;200;200;200;65535;65535*50$"
+    ser.write(first_msg.encode("utf-8"))
+    ser.flush()    
     while True:
         raw_data, addr = s.recvfrom(1024)
         

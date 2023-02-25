@@ -39,14 +39,20 @@ def received_msg():
     content = request.data
     SERVER_IP   = "127.0.0.1"
     PORT_NUMBER = 4000
-    SIZE = 1024
-    
     mySocket = socket( AF_INET, SOCK_DGRAM )
     data_str = bytes(str(content).encode("utf-8"))
     mySocket.sendto(data_str,(SERVER_IP,PORT_NUMBER))
     return str(content)
 
-
+@app.route('/animation', methods=['POST'])
+def received_animation():
+    content = request.data
+    SERVER_IP   = "127.0.0.1"
+    PORT_NUMBER = 4000
+    mySocket = socket( AF_INET, SOCK_DGRAM )
+    data_str = bytes(str(content).encode("utf-8"))
+    mySocket.sendto(data_str,(SERVER_IP,PORT_NUMBER))
+    return str(content)
 
 if __name__ == '__main__':
     app.run()

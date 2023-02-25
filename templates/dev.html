@@ -251,6 +251,44 @@
 					</label>	</li>			
 				</ul>
 			</div>
+			<div class="column">
+				<h2>Animação</h2>
+				<ul>
+					<li>
+						<button type="button" onclick="animation(0)" id="anim_0" class="button">Animação 0</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(1)" id="anim_1" class="button">Animação 1</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(2)" id="anim_2" class="button">Animação 2</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(3)" id="anim_3" class="button">Animação 3</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(4)" id="anim_4" class="button">Animação 4</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(5)" id="anim_5" class="button">Animação 5</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(6)" id="anim_6" class="button">Animação 6</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(7)" id="anim_7" class="button">Animação 7</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(8)" id="anim_8" class="button">Animação 8</button>
+					</li>
+					<li>
+						<button type="button" onclick="animation(9)" id="anim_9" class="button">Animação 9</button>
+					</li>																																										
+					<li>
+						<button type="button" onclick="animation(10)" id="anim_10" class="button">Animação 10</button>
+					</li>					
+				</ul>
+			</div>			
 		</div>
 
 
@@ -338,7 +376,25 @@
 			sendData();
 			};
 
+			
+			function animation(selected_animation){ 
 
+					var logging = m0.value;
+					console.log(logging);				
+
+					msg = {"animation":selected_animation};
+					fetch('http://' + document.domain + ':' + location.port + '/animation', {
+							method: 'POST',
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json'
+							},
+							body: JSON.stringify(msg)
+						})
+						.then(response => response.json())
+						.then(response => console.log(JSON.stringify(response)));
+
+					};
 
 
 			function sendData(){ 

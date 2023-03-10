@@ -51,6 +51,23 @@ def send_data(data):
     to_send += str(dig_low)+";"
     to_send += str(dig_high)
 
+    if "cLED" in data:
+        L0R = int(data["cLED"][0])
+        L0G = int(data["cLED"][1])
+        L0B = int(data["cLED"][2])
+        L1R = int(data["cLED"][3])
+        L1G = int(data["cLED"][4])
+        L1B = int(data["cLED"][5])
+        L0 = int(data["cLED"][6])
+        L1 = int(data["cLED"][7])
+        LR = L1R<<8+L0R
+        LG = L1G<<8+L0G
+        LB = L1B<<8+L0B
+        L = L1<<8+L0
+        to_send += str(LR)+";"+str(LG)+";"+str(LB)+str(L)
+
+
+
     to_send += "*"
     to_send += checksum(to_send) + "$"
     

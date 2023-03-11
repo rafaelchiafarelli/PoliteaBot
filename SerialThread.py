@@ -49,10 +49,12 @@ def send_data(data):
     dig_high = dig_high>>16
 
     to_send += str(dig_low)+";"
-    to_send += str(dig_high)
+    to_send += str(dig_high)+";"
 
     if "cLED" in data:
+        print(data["cLED"])
         L0R = int(data["cLED"][0])
+        print(L0R)
         L0G = int(data["cLED"][1])
         L0B = int(data["cLED"][2])
         L1R = int(data["cLED"][3])
@@ -60,20 +62,23 @@ def send_data(data):
         L1B = int(data["cLED"][5])
         L0 = int(data["cLED"][6])
         L1 = int(data["cLED"][7])
-        LR = L1R<<8+L0R
-        LG = L1G<<8+L0G
-        LB = L1B<<8+L0B
-        L = L1<<8+L0
-        to_send += str(LR)+";"+str(LG)+";"+str(LB)+str(L)
+        LR = L1R*0x100+L0R
+        print(LR)
+        LG = L1G*0x100+L0G
+        LB = L1B*0x100+L0B
+        L = L1*0x100+L0
+        to_send += str(LR)+";"+str(LG)+";"+str(LB)+";"+str(L)
+        
 
 
 
     to_send += "*"
     to_send += checksum(to_send) + "$"
-    
+    print(to_send)
     ser.write(to_send.encode("utf-8"))
     ser.flush()
     var = ser.read(1024)
+
       
 
 def Main():

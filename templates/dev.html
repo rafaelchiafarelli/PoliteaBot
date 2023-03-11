@@ -209,41 +209,41 @@
 				<ul>
 					<li><label class="slider">Vermelho
 						<input type="range" min="0" max="255" value="127" class="slider" id="L0R">
-						<span><label id="l0rv"></label></span><span class="slider"></span>
+						<span><label id="l0r"></label></span><span class="slider"></span>
 					</label></li>
 					<li><label class="slider">Verde
 						<input type="range" min="0" max="255" value="127" class="slider" id="L0G">
-						<span><label id="l0gv"></label></span><span class="slider"></span>
+						<span><label id="l0g"></label></span><span class="slider"></span>
 					</label></li>
 					<li><label class="slider">Azul
 						<input type="range" min="0" max="255" value="127" class="slider" id="L0B">
-						<span><label id="l0bv"></label></span><span class="slider"></span>
+						<span><label id="l0b"></label></span><span class="slider"></span>
 					</label></li>
 				</ul>
 				<h2>LED 1</h2>
 				<lu>
 					<li><label class="slider">Vermelho
 						<input type="range" min="0" max="255" value="127" class="slider" id="L1R">
-						<span><label id="l1rv"></label></span><span class="slider"></span>
+						<span><label id="l1r"></label></span><span class="slider"></span>
 					</label></li>
 					<li><label class="slider">Verde
 						<input type="range" min="0" max="255" value="127" class="slider" id="L1G">
-						<span><label id="l1gv"></label></span><span class="slider"></span>
+						<span><label id="l1g"></label></span><span class="slider"></span>
 					</label></li>
 					<li><label class="slider">Azul
 						<input type="range" min="0" max="255" value="127" class="slider" id="L1B">
-						<span><label id="l1bv"></label></span><span class="slider"></span>
+						<span><label id="l1b"></label></span><span class="slider"></span>
 					</label></li>
 				</lu>
 				<h2>LED</h2>
 				<lu>
 					<li><label class="slider">Led roxo 0
 						<input type="range" min="0" max="255" value="127" class="slider" id="L0P">
-						<span><label id="lm6"></label></span><span class="slider"></span>
+						<span><label id="l0p"></label></span><span class="slider"></span>
 					</label></li>
 					<li><label class="slider">Led roxo 1
 						<input type="range" min="0" max="255" value="127" class="slider" id="L1P">
-						<span><label id="lm7"></label></span><span class="slider"></span>
+						<span><label id="l1p"></label></span><span class="slider"></span>
 					</label></li>
 
 
@@ -423,23 +423,25 @@
 			};
 
 			var slider10 = document.getElementById("L0R");
-			var output10 = document.getElementById("lL0R");
+			var output10 = document.getElementById("l0r");
 			output10.innerHTML = slider10.value;
 
 			slider10.oninput = function() {
 			output10.innerHTML = this.value;
 			sendData();
 			};			
+
 			var slider11 = document.getElementById("L0G");
-			var output11 = document.getElementById("lL0G");
+			var output11 = document.getElementById("l0g");
 			output11.innerHTML = slider11.value;
 
 			slider11.oninput = function() {
 			output11.innerHTML = this.value;
 			sendData();
 			};
+
 			var slider12 = document.getElementById("L0B");
-			var output12 = document.getElementById("lL0B");
+			var output12 = document.getElementById("l0b");
 			output12.innerHTML = slider12.value;
 
 			slider12.oninput = function() {
@@ -447,71 +449,49 @@
 			sendData();
 			};					
 
-
-			var slider11 = document.getElementById("L1R");
-			var output11 = document.getElementById("lL1R");
-			output11.innerHTML = slider10.value;
-
-			slider11.oninput = function() {
-			output11.innerHTML = this.value;
-			sendData();
-			};			
-			var slider12 = document.getElementById("L1G");
-			var output12 = document.getElementById("lL1G");
-			output12.innerHTML = slider11.value;
-
-			slider12.oninput = function() {
-			output12.innerHTML = this.value;
-			sendData();
-			};
-			var slider13 = document.getElementById("L1B");
-			var output13 = document.getElementById("lL1B");
-			output13.innerHTML = slider12.value;
+			var slider13 = document.getElementById("L1R");
+			var output13 = document.getElementById("l1r");
+			output13.innerHTML = slider13.value;
 
 			slider13.oninput = function() {
 			output13.innerHTML = this.value;
 			sendData();
 			};			
 
-			var slider14 = document.getElementById("L2R");
-			var output14 = document.getElementById("lL2R");
-			output14.innerHTML = slider10.value;
+			var slider14 = document.getElementById("L1G");
+			var output14 = document.getElementById("l1g");
+			output14.innerHTML = slider14.value;
 
 			slider14.oninput = function() {
 			output14.innerHTML = this.value;
 			sendData();
-			};			
-			var slider15 = document.getElementById("L2G");
-			var output15 = document.getElementById("lL2G");
-			output15.innerHTML = slider11.value;
+			};
+
+			var slider15 = document.getElementById("L1B");
+			var output15 = document.getElementById("l1b");
+			output15.innerHTML = slider15.value;
 
 			slider15.oninput = function() {
 			output15.innerHTML = this.value;
 			sendData();
-			};
-			var slider16 = document.getElementById("L2B");
-			var output16 = document.getElementById("lL2B");
-			output16.innerHTML = slider12.value;
+			};			
+
+			
+			var slider16 = document.getElementById("L0P");
+			var output16 = document.getElementById("l0p");
+			output16.innerHTML = slider16.value;
 
 			slider16.oninput = function() {
 			output16.innerHTML = this.value;
 			sendData();
-			};	
+			};			
 
-			var slider17 = document.getElementById("L0P");
-			var output17 = document.getElementById("L0P");
-			output17.innerHTML = slider10.value;
+			var slider17 = document.getElementById("L1P");
+			var output17 = document.getElementById("l1p");
+			output17.innerHTML = slider17.value;
 
 			slider17.oninput = function() {
 			output17.innerHTML = this.value;
-			sendData();
-			};			
-			var slider18 = document.getElementById("L1P");
-			var output18 = document.getElementById("L1P");
-			output18.innerHTML = slider11.value;
-
-			slider18.oninput = function() {
-			output18.innerHTML = this.value;
 			sendData();
 			};
 			
@@ -529,7 +509,6 @@
 							},
 							body: JSON.stringify(msg)
 						})
-						.then(response => response.json())
 						.then(response => console.log(JSON.stringify(response)));
 
 					};
@@ -548,15 +527,16 @@
 					m8.value =document.getElementById("m8").value; 
 					m9.value =document.getElementById("m9").value; 
 
-					led_0_r = document.getElementById("L0R").value; 
-					led_0_g = document.getElementById("L0G").value; 
-					led_0_b = document.getElementById("L0B").value; 
-					led_1_r = document.getElementById("L1R").value; 
-					led_1_g = document.getElementById("L1G").value; 
-					led_1_b = document.getElementById("L1B").value; 
-					led_0 = document.getElementById("L0P").value; 
-					led_1 = document.getElementById("L1P").value; 
-
+					L0R.value =document.getElementById("L0R").value; 
+					L0G.value =document.getElementById("L0G").value; 
+					L0B.value =document.getElementById("L0B").value; 
+					L1R.value =document.getElementById("L1R").value; 
+					L1G.value =document.getElementById("L1G").value; 
+					L1B.value =document.getElementById("L1B").value; 
+					L0P.value =document.getElementById("L0P").value; 
+					L1P.value =document.getElementById("L1P").value; 
+					var logging1 = L0R.value;
+					console.log(logging1);	
 					L0.value =document.getElementById("L0").checked; 
 					L1.value =document.getElementById("L1").checked; 
 					L2.value =document.getElementById("L2").checked; 
@@ -593,7 +573,7 @@
 					D5.value =document.getElementById("D5").checked; 
 					D6.value =document.getElementById("D6").checked; 
 					D7.value =document.getElementById("D7").checked; 
-
+					
 
 					var logging = m0.value;
 					console.log(logging);				
@@ -642,14 +622,14 @@
 					D6.value,
 					D7.value],
 					"cLED":[
-					led_0_r.value,
-					led_0_g.value,
-					led_0_b.value,
-					led_1_r.value,
-					led_1_g.value,
-					led_1_b.value,
-					led_0.value,
-					led_1.value
+					L0R.value,
+					L0G.value,
+					L0B.value,
+					L1R.value,
+					L1G.value,
+					L1B.value,
+					L0P.value,
+					L1P.value
 					]
 					};
 					fetch('http://' + document.domain + ':' + location.port + '/message', {
